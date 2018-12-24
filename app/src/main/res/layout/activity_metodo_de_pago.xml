@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MetodoDePagoActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textViewMontoMetodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="MONTO"
+        android:textSize="40dp"
+        android:textAlignment="center"/>
+
+    <Spinner
+        android:id="@+id/spinnerMetodo"
+        android:layout_marginRight="90dp"
+        android:layout_marginLeft="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <ImageView
+        android:id="@+id/imgViewMetodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/cmdNextMetodo"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Siguiente"
+        android:background="@drawable/button_shape"
+        android:backgroundTint= "#0e82ff"
+        />
+
+</LinearLayout>
