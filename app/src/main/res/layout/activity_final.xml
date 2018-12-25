@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.FinalActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto: $"
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/textViewFinalMonto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Monto"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metodo de Pago: "
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/textViewFinalMetodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Metodo"
+            android:textSize="20dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Banco: "
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/textViewFinalMBanco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Banco"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuotas: "
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/textViewFinalMCuotas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Cuotas"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

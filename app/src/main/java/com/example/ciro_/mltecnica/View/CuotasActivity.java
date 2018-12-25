@@ -3,6 +3,8 @@ package com.example.ciro_.mltecnica.View;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -23,11 +25,13 @@ public class CuotasActivity extends AppCompatActivity {
     private Float monto;
     private String metodoDePagoID;
     private String bancoSeleccionadoID;
+    private String bancoSeleccionadoNombre;
     private List<Cuotas> listaDeCuotas;
 
     private Cuotas cuotaSeleccionada;
     private List<PayerCost> listaDePayerCost;
-    private PayerCost payerCost;
+    private PayerCost payerCostSeleccionado;
+    private String planSeleccionado;
 
     private TextView textViewMonto;
     private Spinner spinnerCuotas;
@@ -50,6 +54,7 @@ public class CuotasActivity extends AppCompatActivity {
         monto = bundle.getFloat("monto");
         metodoDePagoID = bundle.getString("id");
         bancoSeleccionadoID = bundle.getString("idBanco");
+        bancoSeleccionadoNombre = bundle.getString("nombreBanco");
         textViewMonto.setText(monto.toString());
 
         cuotasController = new CuotasController();
@@ -63,13 +68,37 @@ public class CuotasActivity extends AppCompatActivity {
             }
         }); //Monto, idMetodoDePago, idBanco
 
+        spinnerCuotas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                payerCostSeleccionado = listaDePayerCost.get(position);
+                planSeleccionado = payerCostSeleccionado.getRecommendedMessage();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        botonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity();
+            }
+        });
+
+
     }
 
     private void nextActivity(){
-        Intent intent = new Intent(this,CuotasActivity.class);
+        Intent intent = new Intent(this,FinalActivity.class);
         Bundle bundle = new Bundle();
         bundle.putFloat("monto",monto);
-        //Falta IDdelMedioDePAgo y el banco seleccionado
+        bundle.putString("id", metodoDePagoID);
+        bundle.putString("idBanco",bancoSeleccionadoID);
+        bundle.putString("nombreBanco", bancoSeleccionadoNombre);
+        bundle.putString("cuotas",planSeleccionado);
         intent.putExtras(bundle);
         startActivity(intent);
     }

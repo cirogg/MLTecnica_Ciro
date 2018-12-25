@@ -9,14 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.example.ciro_.mltecnica.Controller.BancoController;
 import com.example.ciro_.mltecnica.Model.Banco;
 import com.example.ciro_.mltecnica.Model.Cuotas;
+import com.example.ciro_.mltecnica.Model.MetodoDePago;
 import com.example.ciro_.mltecnica.R;
 import com.example.ciro_.mltecnica.Util.ResultListener;
+import com.example.ciro_.mltecnica.View.Adapters.SpinnerAdapterBanco;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BancoActivity extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class BancoActivity extends AppCompatActivity {
 
     private Banco bancoSeleccionado;
     private String bancoSeleccionadoID;
+    private String getBancoSeleccionadoNombre;
 
     private TextView textViewMonto;
     private Spinner spinnerBancos;
@@ -34,6 +39,8 @@ public class BancoActivity extends AppCompatActivity {
     private Button botonNext;
 
     private BancoController bancoController;
+
+    private List<String>listaParaElSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +62,9 @@ public class BancoActivity extends AppCompatActivity {
             @Override
             public void finish(List<Banco> resultado) {
                 listaDeBancos = resultado;
-                arrayAdapter = new ArrayAdapter(BancoActivity.this,android.R.layout.simple_dropdown_item_1line,listaDeBancos);
-                spinnerBancos.setAdapter(arrayAdapter);
+                setearSpinner(listaDeBancos);
+                /*arrayAdapter = new ArrayAdapter(BancoActivity.this,android.R.layout.simple_dropdown_item_1line,listaDeBancos);
+                spinnerBancos.setAdapter(arrayAdapter);*/
             }
         },metodoDePagoID);
 
@@ -66,6 +74,9 @@ public class BancoActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 bancoSeleccionado = listaDeBancos.get(position);
                 bancoSeleccionadoID = bancoSeleccionado.getId();
+                getBancoSeleccionadoNombre = bancoSeleccionado.getName();
+
+
             }
 
             @Override
@@ -90,7 +101,19 @@ public class BancoActivity extends AppCompatActivity {
         bundle.putFloat("monto",monto);
         bundle.putString("id", metodoDePagoID);
         bundle.putString("idBanco",bancoSeleccionadoID);
+        bundle.putString("nombreBanco",getBancoSeleccionadoNombre);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    private void setearSpinner(List<Banco> listaDeBancos){
+        listaParaElSpinner = new ArrayList<>();
+        for (Banco deBancos : listaDeBancos) {
+            listaParaElSpinner.add(deBancos.getName());
+        }
+
+        SpinnerAdapterBanco spinnerAdapterBanco = new SpinnerAdapterBanco(listaParaElSpinner,this,listaDeBancos);
+        spinnerBancos.setAdapter(spinnerAdapterBanco);
+
     }
 }

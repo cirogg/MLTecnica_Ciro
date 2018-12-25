@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".View.BancoActivity" />
         <activity android:name=".View.CuotasActivity" />
-        <activity android:name=".View.MetodoDePagoActivity"></activity>
+        <activity android:name=".View.MetodoDePagoActivity" />
+        <activity android:name=".View.FinalActivity"></activity>
     </application>
 
 </manifest>
